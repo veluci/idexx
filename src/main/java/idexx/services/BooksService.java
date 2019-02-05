@@ -32,8 +32,8 @@ public class BooksService {
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
-                .queryParam("q", "Steve+Jobs")
-                .queryParam("Results", "5");
+                .queryParam("q", searchKey)
+                .queryParam("maxResults", sizeLimit);
 
         ResponseEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
         GoogleWrapper googleWrapper = null;

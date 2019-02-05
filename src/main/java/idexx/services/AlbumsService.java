@@ -32,8 +32,8 @@ public class AlbumsService {
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
-                .queryParam("term", "jack+johnson")
-                .queryParam("limit", "5")
+                .queryParam("term", searchKey)
+                .queryParam("limit", sizeLimit)
                 .queryParam("entity", "album");
 
         ResponseEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
