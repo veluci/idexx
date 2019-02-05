@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @ToString
+public class VolumeInfo {
+    private String title;
 
-public class Book {
-    private VolumeInfo volumeInfo;
+    private List<String> authors;
 }

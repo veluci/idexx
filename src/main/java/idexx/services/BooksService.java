@@ -3,11 +3,12 @@ package idexx.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import idexx.domain.Book;
 import idexx.domain.GoogleWrapper;
-import idexx.domain.ItunesWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -15,6 +16,11 @@ import java.util.List;
 
 @Service
 public class BooksService {
+
+    private final String URL = "https://www.googleapis.com/books/v1/volumes";
+
+    @Value("${items.size.limit}")
+    private String sizeLimit;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -25,7 +31,11 @@ public class BooksService {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
-        ResponseEntity<String> response = restTemplate.exchange("https://www.googleapis.com/books/v1/volumes?q=Steve+Jobs&maxResults=5", HttpMethod.GET, entity, String.class);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL)
+                .queryParam("q", "Steve+Jobs")
+                .queryParam("Results", "5");
+
+        ResponseEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, entity, String.class);
         GoogleWrapper googleWrapper = null;
         try {
             googleWrapper = getResponse(response.getBody());
