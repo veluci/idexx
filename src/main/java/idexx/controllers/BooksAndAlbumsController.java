@@ -8,7 +8,7 @@ import idexx.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "https://albums-and-books-fe.herokuapp.com/")
+@CrossOrigin(origins = "https://albums-and-books-fe.herokuapp.com/:443")
 @RestController
 public class BooksAndAlbumsController {
 
