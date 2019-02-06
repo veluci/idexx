@@ -6,9 +6,12 @@ import idexx.dto.ResponseDto;
 import idexx.services.AlbumsService;
 import idexx.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "https://idexx-fe.herokuapp.com:443")
+//@CrossOrigin(origins = "https://idexx-fe.herokuapp.com:443")
 @RestController
 public class BooksAndAlbumsController {
 
