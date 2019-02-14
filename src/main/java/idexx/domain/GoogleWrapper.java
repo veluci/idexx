@@ -14,6 +14,5 @@ import java.util.List;
 public class GoogleWrapper {
 
     private Integer totalItems;
-
     private List<Book> items;
 }

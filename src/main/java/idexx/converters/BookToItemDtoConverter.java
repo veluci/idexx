@@ -5,8 +5,8 @@ import idexx.dto.ItemDTO;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -15,9 +15,10 @@ public class BookToItemDtoConverter
 
         @Override
         public List<ItemDTO> convert(List<Book> bookList) {
-            List<ItemDTO> itemList = new ArrayList<>();
-            bookList.forEach(b -> itemList.add(new ItemDTO(b.getVolumeInfo().getTitle(),b.getVolumeInfo().getAuthors().toString().replaceAll("(^\\[|\\]$)", ""),"book")));
-
-            return itemList;
+            return bookList.stream()
+                    .map(b -> new ItemDTO(b.getVolumeInfo().getTitle(),
+                            b.getVolumeInfo().getAuthors().toString().replaceAll("(^\\[|\\]$)", ""),
+                            "book"))
+                    .collect(Collectors.toList());
         }
 }

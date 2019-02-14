@@ -5,8 +5,8 @@ import idexx.dto.ItemDTO;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class AlbumToItemDtoConverter
@@ -14,10 +14,9 @@ public class AlbumToItemDtoConverter
 
         @Override
         public List<ItemDTO> convert(List<Album> albumList) {
-            List<ItemDTO> itemList = new ArrayList<>();
-            albumList.forEach(a -> itemList.add(new ItemDTO(a.getCollectionName(), a.getArtistName(),"album")));
-
-            return itemList;
+            return albumList.stream()
+                    .map(a -> new ItemDTO(a.getCollectionName(), a.getArtistName(),"album"))
+                    .collect(Collectors.toList());
         }
 }
 

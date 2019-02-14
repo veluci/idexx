@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @Builder
 public class ResponseDto {
+
     private List<ItemDTO> albumList;
     private List<ItemDTO> bookList;
 }

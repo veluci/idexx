@@ -10,6 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Album {
+
     private String collectionName;
     private String artistName;
 }

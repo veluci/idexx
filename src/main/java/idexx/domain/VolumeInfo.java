@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 public class VolumeInfo {
-    private String title;
 
+    private String title;
     private List<String> authors;
 }

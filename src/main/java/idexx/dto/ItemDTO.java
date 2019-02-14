@@ -8,10 +8,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ItemDTO {
+
     private String name;
-
     private String authors;
-
     private String itemType;
 
 }
